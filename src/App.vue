@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
-<template>1</template>
+<template>123</template>
 
 <style scoped></style>
