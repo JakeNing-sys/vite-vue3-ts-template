@@ -27,6 +27,8 @@ export default [
     // 忽略校验的文件
     ignores: ['node_modules', 'dist', 'public', 'types'],
 
+    extends: ['./.eslintrc-auto-import.json'],
+
     /*
      * "off" 或 0    ==>  关闭规则
      * "warn" 或 1   ==>  打开的规则作为警告（不影响代码执行）
