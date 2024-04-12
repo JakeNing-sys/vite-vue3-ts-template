@@ -20,15 +20,16 @@ export default defineConfig(({ mode }) => {
         dts: 'src/auto-import.d.ts',
         eslintrc: {
           enabled: true, // 用于生成eslint配置
-        }
-      })],
+        },
+      }),
+    ],
     resolve: {
       alias: {
-        "@": resolve(__dirname, "./src"),
-      }
+        '@': resolve(__dirname, './src'),
+      },
     },
     server: {
-      host: "0.0.0.0",
+      host: '0.0.0.0',
       proxy: {
         [viteEnv.VITE_API_TARGET]: {
           target: viteEnv.VITE_SERVE,
