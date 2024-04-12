@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
   const viteEnv = loadEnv(mode, process.cwd()) // 获取环境变量
 
   return {
+    base: '/vite-vue3-ts-template/', // github仓库名称
     plugins: [
       vue(),
       createSvgIconsPlugin({
