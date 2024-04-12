@@ -3,5 +3,4 @@ import App from './App.vue'
 
 createApp(App).mount('#app')
 
-
-var a = "hello world";;;;;
+var a = 'hello world'
