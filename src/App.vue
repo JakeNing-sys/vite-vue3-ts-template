@@ -13,7 +13,7 @@ dayjs.locale('zh-cn')
 </script>
 
 <template>
-  <h1 class="text-red-600 text-3xl font-bold underline">Hello world!</h1>
+  <h1 class="text-red-600 text-3xl font-bold underline">Hello world!!!!!!!</h1>
   <!-- <a-config-provider :locale="locale">
     <h1 class="text-red-600 text-3xl font-bold underline">Hello world!</h1>
     <StarOutlined />
