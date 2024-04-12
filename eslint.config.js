@@ -24,6 +24,7 @@ export default [
       // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off', // 禁止使用 debugger
       'no-unexpected-multiline': 'error', // 禁止空余的多行
       'no-useless-escape': 'off', // 禁止不必要的转义字符
+      // 'no-undef': 'off', // 禁止使用未声明的变量
 
       // typeScript (https://typescript-eslint.io/rules)
       '@typescript-eslint/no-unused-vars': 'error', // 禁止定义未使用的变量
