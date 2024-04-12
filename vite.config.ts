@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
         imports: ['vue', 'vue-router'],
         dts: 'src/auto-import.d.ts',
         eslintrc: {
-          enabled: true, // 用于生成eslint配置
+          enabled: false, // 用于生成eslint配置
         },
       }),
     ],
