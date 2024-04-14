@@ -1,8 +1,10 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite' // Vue api 自动导入插件
 import { resolve } from 'path'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import AutoImport from 'unplugin-auto-import/vite' // 自动导入VueApi插件
+import { createHtmlPlugin } from 'vite-plugin-html' // html模板插件
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons' // svg图标插件
+import vueSetupExtend from 'vite-plugin-vue-setup-extend' // 定义Vue组件名称插件
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -12,6 +14,15 @@ export default defineConfig(({ mode }) => {
     base: '/vite-vue3-ts-template/', // github仓库名称
     plugins: [
       vue(),
+      vueSetupExtend(),
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: {
+            title: viteEnv.VITE_APP_TITLE,
+          },
+        },
+      }),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/svgIcons')],
         symbolId: 'icon-[dir]-[name]',
@@ -27,6 +38,14 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/variables.scss";',
+        },
       },
     },
     server: {
