@@ -6,7 +6,9 @@ const useUserStore = defineStore(
   'User',
   () => {
     /* [ *** state *** ] */
-    const token = ref(JSON.parse(localStorage.getItem('TOKEN') as string)?.token)
+    const token = ref(
+      JSON.parse(localStorage.getItem('TOKEN') as string)?.token,
+    )
 
     /* [ *** actions *** ] */
     const userLogin = async (data: LoginParams) => {
@@ -25,7 +27,7 @@ const useUserStore = defineStore(
 
     return {
       token,
-      userLogin
+      userLogin,
     }
   },
   {
@@ -36,7 +38,7 @@ const useUserStore = defineStore(
         key: 'TOKEN', // key
       },
     ],
-  }
+  },
 )
 
 export default useUserStore

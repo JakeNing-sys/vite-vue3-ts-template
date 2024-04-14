@@ -7,7 +7,8 @@ enum API {
   LOGOUT = '/admin/acl/index/logout',
 }
 
-export const login = (data: LoginParams) => request.post<any, LoginResult>(API.LOGIN, data)
+export const login = (data: LoginParams) =>
+  request.post<any, LoginResult>(API.LOGIN, data)
 
 export const getUserInfo = () => request.get<any, any>(API.USERINFO)
 
