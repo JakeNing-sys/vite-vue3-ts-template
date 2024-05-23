@@ -4,7 +4,7 @@ import useUserStore from '@/store/modules/user'
 
 // 创建 axios 实例
 const request = axios.create({
-  // baseURL: import.meta.env.VITE_API_TARGET, // 基础路径（接口地址前缀/api）
+  baseURL: import.meta.env.VITE_API_TARGET, // 基础路径（接口地址前缀/api）
   timeout: import.meta.env.VITE_API_TIMEOUT, // 请求超时时间（请求超过5s无论是否成功，都是请求失败）
   withCredentials: true, // 跨域时候允许携带凭证
 })
