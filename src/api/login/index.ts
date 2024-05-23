@@ -2,9 +2,9 @@ import request from '@/utils/request'
 import type { LoginParams, LoginResult, UserInfo, MENULIST } from './types'
 
 enum API {
-  LOGIN = '../../../public/json/login.json',
-  USERINFO = '../../../public/json/userInfo.json',
-  MENU_LIST = '../../../public/json/authMenuList.json',
+  LOGIN = '/public/json/login.json',
+  USERINFO = '/public/json/userInfo.json',
+  MENU_LIST = '/public/json/authMenuList.json',
 }
 
 // export const login = (data: LoginParams) =>
