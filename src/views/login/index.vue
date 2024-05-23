@@ -17,7 +17,8 @@
         >
           <a-input
             v-model:value="formState.username"
-            placeholder="账号：admin or user"
+            placeholder="账号：admin or user（两个账户权限不同）"
+            autocomplete="off"
           >
             <template #prefix>
               <UserOutlined style="color: rgba(0, 0, 0, 0.45)" />
@@ -31,7 +32,8 @@
         >
           <a-input-password
             v-model:value="formState.password"
-            placeholder="密码：123456"
+            placeholder="密码：111111"
+            autocomplete="off"
           >
             <template #prefix>
               <LockOutlined style="color: rgba(0, 0, 0, 0.45)" />
@@ -57,11 +59,7 @@
 <script setup lang="ts" name="Login">
 import { h } from 'vue'
 import { notification } from 'ant-design-vue'
-import {
-  UserOutlined,
-  LockOutlined,
-  SmileOutlined,
-} from '@ant-design/icons-vue'
+import { SmileOutlined } from '@ant-design/icons-vue'
 import useUserStore from '@/store/modules/user'
 import { getNowTime } from '@/utils/time'
 
@@ -76,8 +74,8 @@ const router = useRouter()
 
 const loading = ref(false)
 const formState = ref<FormState>({
-  username: 'admin',
-  password: '111111',
+  username: '',
+  password: '',
 })
 
 // 登录 - 验证成功回调

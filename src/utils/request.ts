@@ -1,22 +1,22 @@
 import axios from 'axios'
-import { message } from 'ant-design-vue'
-// import useUserStore from '@/store/modules/user'
+import { message, Modal } from 'ant-design-vue'
+import useUserStore from '@/store/modules/user'
 
 // 创建 axios 实例
 const request = axios.create({
-  baseURL: import.meta.env.VITE_API_TARGET, // 基础路径（接口地址前缀/api）
+  // baseURL: import.meta.env.VITE_API_TARGET, // 基础路径（接口地址前缀/api）
   timeout: import.meta.env.VITE_API_TIMEOUT, // 请求超时时间（请求超过5s无论是否成功，都是请求失败）
   withCredentials: true, // 跨域时候允许携带凭证
 })
 
 // 请求拦截器
 request.interceptors.request.use((config) => {
-  // const userStore = useUserStore()
+  const userStore = useUserStore()
 
   // 如果有 token 则添加到请求头中
-  // if (userStore.token) {
-  //   config.headers.token = userStore.token
-  // }
+  if (userStore.token) {
+    config.headers.token = userStore.token
+  }
 
   // 请求前显示 loading
   // loadingInstance = Loading.service({
@@ -32,18 +32,34 @@ request.interceptors.request.use((config) => {
 // [响应拦截器]
 request.interceptors.response.use(
   // 成功回调
-  (response) => {
+  (response): Promise<Error | any> => {
     // 关闭 loading
     // loadingInstance.close()
 
+    const { promise, resolve, reject } = Promise.withResolvers()
+    const userStore = useUserStore()
     const { code, message: msg, data } = response.data
 
-    if (code !== 200) {
+    if (code === 1001) {
+      // 无效 token 处理
+      Modal.error({
+        title: '提示',
+        content: '登录信息已失效，请重新登录',
+        async onOk() {
+          await userStore.userLogout()
+          location.reload()
+        },
+      })
+      reject(new Error(msg))
+    } else if (code !== 200) {
+      // 处理业务错误信息
       message.error(msg)
-      return Promise.reject(new Error(msg))
+      reject(new Error(msg))
+    } else {
+      resolve(data)
     }
 
-    return Promise.resolve(data)
+    return promise
   },
 
   // 失败回调（http 请求失败）

@@ -11,7 +11,8 @@ export default defineConfig(({ mode }) => {
   const viteEnv = loadEnv(mode, process.cwd()) // 获取环境变量
 
   return {
-    base: '/vite-vue3-ts-template/', // github仓库名称
+    base:
+      viteEnv.VITE_NODE_ENV === 'development' ? '' : '/vite-vue3-ts-template/',
     plugins: [
       vue(),
       vueSetupExtend(),
@@ -28,10 +29,10 @@ export default defineConfig(({ mode }) => {
         symbolId: 'icon-[dir]-[name]',
       }),
       AutoImport({
-        imports: ['vue', 'vue-router'],
+        imports: ['vue', 'vue-router', 'pinia'],
         dts: 'src/auto-import.d.ts',
         eslintrc: {
-          enabled: false, // 用于生成eslint配置
+          enabled: false, // 用于生成eslint配置，第一次设置为true，生成配置文件后再设置为false，防止重复生成。
         },
       }),
     ],

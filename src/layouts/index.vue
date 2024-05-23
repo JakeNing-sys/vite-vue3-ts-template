@@ -1,59 +1,85 @@
 <template>
-  <div>
-    <a-layout class="layout">
-      <!-- 左侧-->
-      <a-layout-sider
-        width="260px"
-        :trigger="null"
-        v-model:collapsed="collapsed"
-        collapsible
-      >
-        <!-- logo -->
-        <Logo />
+  <a-layout class="layout-container">
+    <!-- 左侧 -->
+    <a-layout-sider
+      width="256px"
+      :style="siderStyle"
+      :trigger="null"
+      v-model:collapsed="settingStore.collapsed"
+      collapsible
+    >
+      <!-- Logo -->
+      <Logo />
 
-        <!-- 菜单 菜单区域可滚动 -->
-        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-          <a-menu-item v-for="item in 50" :key="item">
-            <user-outlined />
-            <span class="nav-text">nav {{ item }}</span>
-          </a-menu-item>
-        </a-menu>
-      </a-layout-sider>
+      <!-- 路由菜单 -->
+      <Menu />
+    </a-layout-sider>
 
-      <!-- 右侧 -->
-      <a-layout>
-        <!-- 顶部导航栏 -->
-        <a-layout-header>头部</a-layout-header>
+    <!-- 右侧 -->
+    <a-layout>
+      <!-- 顶部导航栏 -->
+      <a-layout-header :style="headerStyle">
+        <Header />
+      </a-layout-header>
 
-        <!-- 内容区域 -->
-        <a-layout-content
-          :style="{
-            padding: '20px',
-            minHeight: 'calc(100vh - 126px)',
-            overflowY: 'auto',
-          }"
-        >
-          <!-- <router-view /> -->
-          <div style="padding: 20px" v-for="i in 100" :key="i">内容区域</div>
-        </a-layout-content>
+      <!-- 菜单标签页 -->
+      <Tabs />
 
-        <!-- 底部区域 -->
-        <a-layout-footer>底部</a-layout-footer>
-      </a-layout>
+      <!-- 内容区域 -->
+      <a-layout-content :style="contentStyle">
+        <Main />
+      </a-layout-content>
+
+      <!-- 底部区域 -->
+      <a-layout-footer :style="footerStyle">
+        2024 © VITE-VUE3-TS-TEMPLATE By Jake Ning.
+      </a-layout-footer>
     </a-layout>
-  </div>
+  </a-layout>
 </template>
 
 <script setup lang="ts" name="Layouts">
-import Logo from '@/layouts/Logo/index.vue'
 import type { CSSProperties } from 'vue'
+import Logo from '@/layouts/Logo/index.vue'
+import Main from '@/layouts/Main/index.vue'
+import Menu from '@/layouts/Menu/index.vue'
+import useSettingStore from '@/store/modules/setting'
+import Header from './Header/index.vue'
+import Tabs from './Tabs/index.vue'
 
-const selectedKeys = ref<string[]>(['4'])
-const collapsed = ref(false)
+const settingStore = useSettingStore()
+
+const headerStyle: CSSProperties = {
+  height: '55px',
+  lineHeight: '55px',
+  padding: '0',
+  backgroundColor: '#fff',
+}
+
+const contentStyle: CSSProperties = {
+  padding: '10px 12px',
+  minHeight: 'calc(100vh - 145px)',
+  overflowY: 'auto',
+}
+
+const siderStyle: CSSProperties = {
+  padding: '0',
+  backgroundColor: '#fff',
+}
+
+const footerStyle: CSSProperties = {
+  height: '30px',
+  lineHeight: '30px',
+  textAlign: 'center',
+  color: '#909399',
+  padding: '0',
+  backgroundColor: '#fff',
+}
 </script>
 
 <style scoped lang="scss">
-.layout {
+.layout-container {
+  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;

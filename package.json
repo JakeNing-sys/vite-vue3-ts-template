@@ -19,12 +19,22 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@newpanjing/datav-vue3": "0.0.0-alpha.0",
+    "@vueuse/core": "^10.9.0",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12",
+    "animate.css": "^4.1.1",
     "ant-design-vue": "^4.1.2",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "default-passive-events": "^2.0.0",
+    "echarts": "^5.5.0",
+    "echarts-liquidfill": "^3.1.0",
+    "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.4.21",
+    "vue-draggable-plus": "^0.4.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

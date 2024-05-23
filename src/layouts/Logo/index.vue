@@ -1,22 +1,27 @@
 <template>
   <div class="logo" v-if="setting.logoShow">
     <img :src="setting.logo" />
-    <p>{{ setting.title }}</p>
+    <p class="animate__animated animate__fadeIn" v-if="!settingStore.collapsed">
+      {{ setting.title }}
+    </p>
   </div>
 </template>
 
 <script setup lang="ts" name="Logo">
 import setting from '@/setting.ts'
+import useSettingStore from '@/store/modules/setting'
+
+const settingStore = useSettingStore()
 </script>
 
 <style scoped lang="scss">
 .logo {
   width: 100%;
-  height: 64px;
-  color: #fff;
+  height: $--base-menu-logo-height;
+  // color: #909399;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
   box-sizing: border-box;
 
   img {
@@ -25,7 +30,7 @@ import setting from '@/setting.ts'
   }
 
   p {
-    font-size: 20px;
+    font-size: 16px;
     margin-left: 10px;
     white-space: nowrap;
   }

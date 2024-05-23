@@ -1,15 +1,33 @@
 import request from '@/utils/request'
-import type { LoginParams, LoginResult } from './types'
+import type { LoginParams, LoginResult, UserInfo, MENULIST } from './types'
 
 enum API {
-  LOGIN = '/admin/acl/index/login',
-  USERINFO = '/admin/acl/index/info',
-  LOGOUT = '/admin/acl/index/logout',
+  LOGIN = './public/json/login.json',
+  USERINFO = './public/json/userInfo.json',
+  MENU_LIST = './public/json/authMenuList.json',
 }
 
-export const login = (data: LoginParams) =>
-  request.post<any, LoginResult>(API.LOGIN, data)
+// export const login = (data: LoginParams) =>
+//   request.post<any, LoginResult>(API.LOGIN, data)
 
-export const getUserInfo = () => request.get<any, any>(API.USERINFO)
+export const login = (params: LoginParams) => {
+  return request<any, LoginResult>({
+    url: API.LOGIN,
+    method: 'GET',
+    params,
+  })
+}
 
-export const logout = () => request.post<any, any>(API.LOGOUT)
+export const userInfo = () => {
+  return request<any, UserInfo>({
+    url: API.USERINFO,
+    method: 'GET',
+  })
+}
+
+export const getMenuList = () => {
+  return request<any, MENULIST>({
+    url: API.MENU_LIST,
+    method: 'GET',
+  })
+}

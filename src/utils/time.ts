@@ -4,21 +4,22 @@ import dayjs from 'dayjs'
 export const getNowTime = () => {
   const time = dayjs()
   const hour = time.hour()
+
   let msg = ''
 
-  if (hour < 6) {
+  if (hour >= 0 && hour <= 6) {
     msg = '凌晨'
-  } else if (hour < 9) {
+  } else if (hour > 6 && hour <= 9) {
     msg = '早上'
-  } else if (hour < 11) {
+  } else if (hour > 9 && hour <= 11) {
     msg = '上午'
-  } else if (hour < 13) {
+  } else if (hour > 11 && hour <= 13) {
     msg = '中午'
-  } else if (hour < 17) {
+  } else if (hour > 13 && hour <= 17) {
     msg = '下午'
-  } else if (hour < 19) {
+  } else if (hour > 17 && hour <= 19) {
     msg = '傍晚'
-  } else if (hour < 24) {
+  } else if (hour > 19 && hour <= 24) {
     msg = '晚上'
   }
 

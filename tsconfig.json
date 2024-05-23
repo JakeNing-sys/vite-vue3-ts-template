@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
 
     // 指定全局组件类型
-    // "types": ["@ant-design/icons-vue"],
+    "types": [],
 
     // 别名类型配置
     "baseUrl": "./", // 解析非相对模块的基地址,默认是当前目录
@@ -30,6 +30,11 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/custom-types.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
