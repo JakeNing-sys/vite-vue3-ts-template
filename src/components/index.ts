@@ -1,6 +1,7 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import * as AntDesignIconsVue from '@ant-design/icons-vue'
+import Scrollbar from '@/components/Scrollbar/index.vue'
+import * as AntDesignIcons from '@ant-design/icons-vue'
 
 interface GlobalComponents {
   [key: string]: Component
@@ -8,7 +9,8 @@ interface GlobalComponents {
 
 const allGloablComponent: GlobalComponents = {
   SvgIcon,
-  ...AntDesignIconsVue,
+  Scrollbar,
+  ...AntDesignIcons,
 }
 
 export default {

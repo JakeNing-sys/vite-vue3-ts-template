@@ -9,7 +9,7 @@ lerna-debug.log*
 
 auto-import.d.ts
 node_modules
-# dist
+dist
 dist-ssr
 *.local
 

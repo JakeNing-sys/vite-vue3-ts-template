@@ -1,0 +1,42 @@
+/* scss 全局变量 */
+$--base-menu-logo-height: 55px; // 左侧菜单logo高度
+
+/* 滚动条样式 */
+@mixin scrollbar() {
+  // 滚动条样式
+  ::-webkit-scrollbar {
+    width: 6px;
+    transition: all 3s ease-in-out;
+    display: none;
+  }
+
+  // 定义滚动条轨道的样式
+  ::-webkit-scrollbar-track {
+    width: 6px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  // 定义滚动条的滑块部分的样式
+  ::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 10px;
+    background-color: #909399;
+  }
+
+  // 显示滚动条
+  &:hover {
+    ::-webkit-scrollbar {
+      display: block;
+      transition: all 3s ease-in-out;
+    }
+  }
+}
+/* 滚动条样式 */
+
+/* 背景图 */
+@mixin background-image($url, $backgroundSize: cover) {
+  background: url($url) no-repeat;
+  background-size: $backgroundSize;
+}
+/* 背景图 */
