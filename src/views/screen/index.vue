@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts" name="Screen">
+import { useFullscreen } from '@vueuse/core'
 import Header from './components/Header/index.vue'
 import Tourist from './components/Tourist/index.vue'
 import Sex from './components/Sex/index.vue'
@@ -38,6 +39,7 @@ import Couter from './components/Couter/index.vue'
 import Year from './components/Year/index.vue'
 
 const ScreenRef = ref()
+const { toggle } = useFullscreen()
 
 // 获取屏幕缩放比例
 const getScale = (w = 1920, h = 1080) => {
@@ -55,11 +57,13 @@ window.addEventListener('resize', handleScale)
 onMounted(() => {
   nextTick(() => {
     handleScale()
+    toggle()
   })
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleScale)
+  toggle()
 })
 </script>
 
